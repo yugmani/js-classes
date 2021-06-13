@@ -11,8 +11,8 @@ function writeCookie() {
 }
 
 function readCookie() {
-  // let allcookies = document.cookie;
-  // alert('All cookies:' + allcookies);
+  let allcookies = document.cookie;
+  alert('All cookies:' + allcookies);
 
   //Get all the cookies pairs in an array
   const cookie_array = document.cookie.split(';');
