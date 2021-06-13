@@ -5,16 +5,17 @@ function writeCookie() {
   }
 
   cookievalue = escape(document.myForm.customer.value) + ';';
-  document.cookie = 'name=' + cookievalue;
+  document.cookie =
+    'firstName=Christopher; expires=Thu, 31 Dec 2099 23:59:59 GMT';
   alert('Setting Cookies: ' + 'name=' + cookievalue);
 }
 
 function readCookie() {
-  let allcookies = document.cookie;
-  alert('All cookies:' + allcookies);
+  // let allcookies = document.cookie;
+  // alert('All cookies:' + allcookies);
 
   //Get all the cookies pairs in an array
-  const cookie_array = allcookies.split(';');
+  const cookie_array = document.cookie.split(';');
 
   //now takey key value pair out of this array
   for (let i = 0; i < cookie_array.length; i++) {
