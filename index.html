@@ -1,11 +1,26 @@
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <script src="script.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
   </head>
   <body>
-    <h1>Hello there!</h1>
-    <a href="/me.html">My other page</a>
+    <div class="container">
+      <header>
+        <h1>Cookies in JavaScript!</h1>
+      </header>
+      <div class="main">
+        <form name="myForm" action="cookie-js">
+          Enter name:<input type="text" name="customer" />
+          <input type="button" value="Set Cookie" onClick="writeCookie()" />
+        </form>
+      </div>
+      <footer>
+        <a
+          href="https://docs.google.com/document/d/1MbAlLcjierjIvJQVBhjQ047HXj4D40xfieYQirGTnkY/edit#"
+          >Source:Cookies in JavaScript</a
+        >
+      </footer>
+    </div>
   </body>
 </html>
