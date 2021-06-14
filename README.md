@@ -1,3 +1,3 @@
-# js-class
+# js-classes
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/js-class)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/js-classes)
