@@ -63,3 +63,95 @@ const animal1 = new Animal("Polar Bear");
 
 console.log(Animal.isNameTaken("Polar Bear")); //true
 console.log(Animal.isNameTaken("Red Panda")); // false
+
+// isNameTaken() is a static method that uses the static private field Animal.#takenNames to check for taken names.
+
+// *************************************
+// INHERITANCE: extends
+// ************************************
+
+// The classes in JavaScript support single inheritance using the extends keyword.
+// In the expression `class Child extends Parent { }` the Child class inherits from Parent the constructor, fields, and methods.
+
+class Bird {
+  name;
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  getName() {
+    return "New bird is: " + this.name;
+  }
+}
+
+class ContentWriter extends Bird {
+  posts = [];
+}
+
+const writer = new ContentWriter("Blue Bird");
+console.log(writer.name); // Blue Bird
+console.log(writer.getName()); // New bird is: Blue Bird
+
+console.log(writer.posts); //   [];
+
+// ContentWriter inherits from the Bird the constructor, the method getName() and the field name.
+// As well, the ContentWriter class declares a new field posts.
+
+// Note: private members of a parent class are not inherited by the child class.
+
+// **************************************************
+// ********* Parent constructor: super() in constructor() ****************
+// ***********************************************
+
+// If you’d like to call the parent constructor in a child class, you need to use the super() special function available in the child constructor.
+
+class ContentBlogger extends Bird {
+  posts = [];
+
+  constructor(name, posts) {
+    super(name);
+    this.posts = posts;
+  }
+}
+
+const blogger = new ContentBlogger("Humming Bird", "the smalleset bird");
+
+console.log(blogger.name); // Humming Bird
+console.log(blogger.posts); // the smalleset bird
+
+// super(name) inside the child class ContentBlogger executes the constructor of the parent class Bird.
+// Calling super() makes sure that the parent constructor initializes the instance.
+
+// **************************************************
+// ********* Parent instance: super in methods. ****************
+// ***********************************************
+
+class ContentReviewer extends Bird {
+  posts = [];
+
+  constructor(name, posts) {
+    super(name);
+    this.posts = posts;
+  }
+
+  getName() {
+    const name = super.getName();
+
+    if (name === "") {
+      return "Unknown";
+    }
+
+    return name;
+  }
+}
+
+const reviewer1 = new ContentReviewer("Eagle", ["The killer bird"]);
+console.log(reviewer1.getName()); // New bird is: Eagle
+const reviewer2 = new ContentReviewer("", ["Unknown bird"]);
+console.log(reviewer2.getName()); // New bird is:
+
+// getName() of the child class ContentReviewer accesses the method super.getName() directly from the parent class Bird.
+// This feature is called `METHOD OVERRIDING`.
+
+// Note that you can use super with static methods too, to access the parent’s static methods.
