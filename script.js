@@ -235,3 +235,5 @@ class Book {
 const book1 = new Book("Harry Potter");
 console.log("Dogman: " + book1.nameContains("Dogman")); //false
 console.log("Harry: " + book1.nameContains("Harry")); //true
+
+// Being private, #getName() cannot be called outside of Book class body.
