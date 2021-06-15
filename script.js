@@ -117,3 +117,121 @@ console.log(student1Name); // 'Andrew'
 
 // But if you try to access the private field #name outside of User class body, a syntax error is thrown:
 // SyntaxError: Private field '#name' must be declared in an enclosing class.
+
+// ************ PUBLIC STATIC FIELDS *************
+
+// You can also define fields on the class itself: the static fields.
+// These are helpful to define class constants or store information specific to the class.
+// To create static fields in a JavaScript class, use the special keyword static followed by the field name: static myStaticField.
+
+class Employee {
+  static TYPE_ADMIN = "admin";
+  static TYPE_REGULAR = "regular";
+
+  name;
+  type;
+
+  constructor(name, type) {
+    this.name = name;
+    this.type = type;
+  }
+}
+
+const admin = new Employee("Site Admin", Employee.TYPE_ADMIN);
+console.log(admin.type === Employee.TYPE_ADMIN); //=>True
+
+// static TYPE_ADMIN and static TYPE_REGULAR define static variables inside the User class.
+// To access the static fields, you have to use the class followed by the field name: User.TYPE_ADMIN and User.TYPE_REGULAR.
+
+// ************ PRIVATE STATIC FIELDS *************
+
+//  To make the static field private, prefix the field name with # special symbol: static #myPrivateStaticField.
+
+class Member {
+  static #MAX_INSTANCES = 2;
+  static #instances = 0;
+
+  name;
+
+  constructor(name) {
+    Member.#instances++;
+    if (Member.#instances > Member.#MAX_INSTANCES) {
+      throw new Error("Unable to create Member instance");
+    }
+
+    this.name = name;
+  }
+}
+
+new Member("Cyrus"); // No Error
+new Member("Prayash Gurung"); // No Error
+// new Member("Jasmina Torres");
+// Uncaught Error: Unable to create Member instance at new Member
+
+// ******************************
+// 4. METHODS
+// ******************************
+
+// The fields hold data.
+// But the ability to modify data is performed by special functions that are a part of the class: the methods.
+
+// The JavaScript classes support both instance and static methods.
+
+// ************ INSTANCE METHODS *************
+
+// Instance methods can access and modify instance data.
+// Instance methods can call other instance methods, as well as any static method.
+
+class Player {
+  name = "Unknown";
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  nameContains(str) {
+    return this.getName().includes(str);
+  }
+}
+
+const player1 = new Player("Anil Gurung");
+console.log(player1.getName()); // Anil Gurung
+
+// getName() { ... } is a method inside the Player class.
+// player1.getName() is a method invocation: it executes the method and returns the computed value if any.
+// In a class method, as well as in the constructor, this value equals to the class instance.
+// Use this to access instance data: this.field, or even call other methods: this.method().
+
+// nameContains(str) { ... } is a method of Player class that accepts one parameter str.
+// More than that, it executes another method of the instance this.getName() to get the player1’s name.
+console.log(player1.nameContains("Anil")); //true
+console.log(player1.nameContains("Torres")); //false
+
+// ********** Private Methods *********
+
+// A method can also be private.
+// To make the method private prefix its name with #.
+
+class Book {
+  #name;
+
+  constructor(name) {
+    this.#name = name;
+  }
+
+  #getName() {
+    return this.#name;
+  }
+
+  nameContains(str) {
+    return this.#getName().includes(str);
+  }
+}
+
+const book1 = new Book("Harry Potter");
+console.log("Dogman: " + book1.nameContains("Dogman")); //false
+console.log("Harry: " + book1.nameContains("Harry")); //true
